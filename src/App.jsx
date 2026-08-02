@@ -5,9 +5,9 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 
 import UserDashboard from './pages/UserDashboard'
-//import CreateWorkOrderPage from './pages/CreateWorkOrderPage'
-//import MyWorkOrdersPage from './pages/MyWorkOrdersPage'
-//import MyManifestsPage from './pages/MyManifestsPage'
+import CreateWorkOrderPage from './pages/CreateWorkOrderPage'
+import MyWorkOrdersPage from './pages/MyWorkOrdersPage'
+import MyManifestsPage from './pages/MyManifestsPage'
 
 //import AdminDashboard from './pages/AdminDashboard'
 //import AdminUsersPage from './pages/AdminUsersPage'
@@ -16,7 +16,7 @@ import UserDashboard from './pages/UserDashboard'
 //import AdminManifestsPage from './pages/AdminManifestsPage'
 //import AdminReportsPage from './pages/AdminReportsPage'
 
-//import NotFoundPage from './pages/NotFoundPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 // Helper funkcija koja pojednostavljuje zaštitu ruta.
 // Omotava element u ProtectedRoute i provjerava korisničku ulogu.
@@ -42,21 +42,14 @@ export default function App() {
 
       {/* USER rute */}
       <Route path="/dashboard" element={protect('USER', <UserDashboard />)} />
-     /* <Route path="/orders/new" element={protect('USER', <CreateWorkOrderPage />)} />
+       <Route path="/orders/new" element={protect('USER', <CreateWorkOrderPage />)} />
       <Route path="/orders" element={protect('USER', <MyWorkOrdersPage />)} />
       <Route path="/manifests" element={protect('USER', <MyManifestsPage />)} />
 
-      {/* ADMIN rute */}
-      <Route path="/admin" element={protect('ADMIN', <AdminDashboard />)} />
-      <Route path="/admin/users" element={protect('ADMIN', <AdminUsersPage />)} />
-      <Route path="/admin/waste-types" element={protect('ADMIN', <AdminWasteTypesPage />)} />
-      <Route path="/admin/orders" element={protect('ADMIN', <AdminWorkOrdersPage />)} />
-      <Route path="/admin/manifests" element={protect('ADMIN', <AdminManifestsPage />)} />
-      <Route path="/admin/reports" element={protect('ADMIN', <AdminReportsPage />)} />
-
-      {/* 404 stranica */}
+       {/* 404 stranica */}
       <Route path="*" element={<NotFoundPage />} />
-      */
+      
+
     </Routes>
   )
 }
