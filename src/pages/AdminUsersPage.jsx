@@ -103,7 +103,7 @@ export default function AdminUsersPage() {
                   )}
 
                   {/* Gumb za brisanje samo ako korisnik nije administrator */}
-                  {user.role !== 'ADMIN' && (
+                  {!user.approved && user.role !== 'ADMIN' && (
                     <button className="small danger" onClick={() => remove(user.id)}>
                       Obriši
                     </button>
