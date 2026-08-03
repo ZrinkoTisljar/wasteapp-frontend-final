@@ -9,12 +9,12 @@ import CreateWorkOrderPage from './pages/CreateWorkOrderPage'
 import MyWorkOrdersPage from './pages/MyWorkOrdersPage'
 import MyManifestsPage from './pages/MyManifestsPage'
 
-//import AdminDashboard from './pages/AdminDashboard'
-//import AdminUsersPage from './pages/AdminUsersPage'
-//import AdminWasteTypesPage from './pages/AdminWasteTypesPage'
-//import AdminWorkOrdersPage from './pages/AdminWorkOrdersPage'
-//import AdminManifestsPage from './pages/AdminManifestsPage'
-//import AdminReportsPage from './pages/AdminReportsPage'
+import AdminDashboard from './pages/AdminDashboard'
+import AdminUsersPage from './pages/AdminUsersPage'
+import AdminWasteTypesPage from './pages/AdminWasteTypesPage'
+import AdminWorkOrdersPage from './pages/AdminWorkOrdersPage'
+import AdminManifestsPage from './pages/AdminManifestsPage'
+import AdminReportsPage from './pages/AdminReportsPage'
 
 import NotFoundPage from './pages/NotFoundPage'
 
@@ -46,7 +46,16 @@ export default function App() {
       <Route path="/orders" element={protect('USER', <MyWorkOrdersPage />)} />
       <Route path="/manifests" element={protect('USER', <MyManifestsPage />)} />
 
+      {/* ADMIN rute */}
+      <Route path="/admin" element={protect('ADMIN', <AdminDashboard />)} />
+      <Route path="/admin/users" element={protect('ADMIN', <AdminUsersPage />)} />
+      <Route path="/admin/waste-types" element={protect('ADMIN', <AdminWasteTypesPage />)} />
+      <Route path="/admin/orders" element={protect('ADMIN', <AdminWorkOrdersPage />)} />
+      *<Route path="/admin/manifests" element={protect('ADMIN', <AdminManifestsPage />)} />
+      <Route path="/admin/reports" element={protect('ADMIN', <AdminReportsPage />)} />
+
        {/* 404 stranica */}
+
       <Route path="*" element={<NotFoundPage />} />
       
 
