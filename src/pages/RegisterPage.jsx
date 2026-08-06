@@ -19,10 +19,11 @@ const initial = {
 export default function RegisterPage() {
   const navigate = useNavigate()
 
-  // State za formu, poruke greške i uspjeha.
+  // State za formu, poruke greške i uspjeha i potvrda lozinke
   const [form, setForm] = useState(initial)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   /**
    * Ažurira pojedino polje forme na temelju name atributa inputa.
@@ -41,8 +42,17 @@ export default function RegisterPage() {
   async function submit(event) {
     event.preventDefault()
     setError('')
+    setSuccess('')
 
+    // Potvrda lozinke provjerava se samo na frontendu.
+    if (form.password !== confirmPassword) {
+      setError('Lozinke se ne podudaraju.')
+      return
+    }
+    
     try {
+      // Backend prima samo podatke iz objekta form.
+      // Potvrda lozinke ne šalje se backendu.
       const result = await registerUser(form)
       setSuccess(result.message)
 
@@ -83,6 +93,11 @@ export default function RegisterPage() {
             <input name="password" type="password" minLength="8" required value={form.password} onChange={change} />
           </label>
 
+          <label>
+            Potvrda lozinke
+            <input name="confirmPassword" type="password" minLength="8" required value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+          </label>
+
           {/* Conditional rendering ovisno o userType */}
           {form.userType === 'CITIZEN' ? (
             <label>
@@ -112,7 +127,8 @@ export default function RegisterPage() {
             Telefon
             <input name="phone" value={form.phone} onChange={change} />
           </label>
-        </div>
+
+          </div>
 
         <button>Pošalji registraciju</button>
 
